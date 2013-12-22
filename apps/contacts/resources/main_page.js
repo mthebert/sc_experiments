@@ -11,34 +11,126 @@ Contacts.mainPage = SC.Page.design({
   // Add childViews to this pane for views to display immediately on page
   // load.
   mainPane: SC.MainPane.design({
+
     childViews: ['toolbarView', 'splitView'],
 
-    // the top header of the page
-    toolbarView: SC.ToolbarView.design({})
+    // The top header of the page.
+    toolbarView: SC.ToolbarView.design({
+      childViews: ['titleView'],
+
+      titleView: SC.LabelView.design({
+        controlSize: SC.LARGE_CONTROL_SIZE,
+        layout: { centerY: 0, height: 24, left: 10, width: 200 },
+        value: "Contacts"
+      })
+    }),
 
     // flexible container for the lists and details
     splitView: SC.SplitView.design({
       // place this beflow the toolbarview
       layout: { top: 32},
-      childViews: ['groupsPanel', 'contactsPanel', 'detailsPanel'],
+      childViews: ['groupsPanel', 'contactsPanel', 'detailPanel'],
+      
       // the list of groups and group control buttons
-      groupsPanel: SC.View.Design(SC.SplitChild,
-      {
-        minimumSize: 200,
-        size: 250
+      groupsPanel: SC.View.design(SC.SplitChild, {
+        minimumSize: 140,
+        size: 220,
+        childViews: ['list', 'controlBar'],
+        
+        list: SC.ScrollView.design({
+          layout: {bottom: 32},
+          contentView: SC.ListView.design({
+            content: ['A','B','C','D','E','F']
+          })
+        }),
+        
+        controlBar: SC.ToolbarView.design({
+          anchorLocation: SC.ANCHOR_BOTTOM,
+          
+          childViews: ['addButton', 'removeButton'],
+          addButton: SC.ButtonView.design({
+            controlSize: SC.HUGE_CONTROL_SIZE,
+            layout: {centerY: 0, left: 10, width: 40, height: 30},
+            title: '+'
+          }),
+          removeButton: SC.ButtonView.design({
+            controlSize: SC.HUGE_CONTROL_SIZE,
+            layout: {centerY: 0, left: 60, width: 40, height: 30},
+            title: 'x'
+          })
+        })
       }),
+      
       // the list of contacts for the group and contact control buttons
       contactsPanel: SC.View.design(SC.SplitChild, {
-        minimumSize: 200,
-        size: 250
+        minimumSize: 140,
+        size: 220,
+        childViews: ['list', 'controlBar'],
+
+        list: SC.ScrollView.design({
+          layout: {bottom: 32},
+          contentView: SC.ListView.design({
+            content: ['1','2','3','4','5','6','7','8','9','10']
+          })
+        }),
+
+        controlBar: SC.ToolbarView.design({
+          anchorLocation: SC.ANCHOR_BOTTOM,
+          childViews: ['addButton', 'removeButton'],
+          
+          addButton: SC.ButtonView.design({
+            controlSize: SC.HUGE_CONTROL_SIZE,
+            layout: {centerY: 0, left: 10, width: 40, height: 30},
+            title: '+'
+          }),
+          removeButton: SC.ButtonView.design({
+            controlSize: SC.HUGE_CONTROL_SIZE,
+            layout: {centerY: 0, left: 60, width: 40, height: 30},
+            title: '-'
+          })          
+        })
       }),
+      
       // the details for the selected contact
-      detailPanel: SC.View.design(SC.splitChild,{
+      detailPanel: SC.View.design(SC.SplitChild, {
         autoResizeStyle: SC.RESIZE_AUTOMATIC,
-        minimumSize: 400
+        minimumSize: 350,
+
+        childViews: ['image', 'fullName', 'telNumber', 'description', 'controlBar'],
+
+        image: SC.ImageView.design({
+          layout: {left: 20, top: 20, height: 120, width: 120},
+          scale: SC.BEST_FIT,
+          value: sc_static('sproutcore-128.png')
+        }),
+        
+        fullName: SC.LabelView.design({
+          layout: { left: 160, top: 50, height: 25, width: 150},
+          value: "Tyler Keating"
+        }),
+
+        telNumber: SC.LabelView.design({
+          layout: { left: 160, top: 75, height: 25, width: 100},
+          value: "(000) 555-1212"
+        }),
+        
+        description: SC.TextFieldView.design({
+          isEditable: false,
+          isTextArea: true,
+          layout: { left: 20, top: 160, bottom: 52, right: 20},
+          value: "Author of the amazing Beginner's Guide to SproutCore book and just a generally an all around nice human being."
+        }),
+
+        controlBar: SC.ToolbarView.design({
+          anchorLocation: SC.ANCHOR_BOTTOM,
+          childViews: ['editButton'],
+
+          editButton: SC.ButtonView.design({
+            layout: { centerY: 0, right: 10, width: 80, height: 24},
+            title: 'Edit'
+          })
+        })
       })
     })
-     
   })
-
 });
