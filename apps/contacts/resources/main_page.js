@@ -40,7 +40,10 @@ Contacts.mainPage = SC.Page.design({
         list: SC.ScrollView.design({
           layout: {bottom: 32},
           contentView: SC.ListView.design({
-            content: ['A','B','C','D','E','F']
+            // the content for this list is contained in Contacts.groupsController
+            contentBinding: 'Contacts.groupsController.arrangedObjects',
+            // if the list selection changes, update the selection on the controller
+            selectionBinding: 'Contacts.groupsController.selection'
           })
         }),
         
@@ -70,7 +73,11 @@ Contacts.mainPage = SC.Page.design({
         list: SC.ScrollView.design({
           layout: {bottom: 32},
           contentView: SC.ListView.design({
-            content: ['1','2','3','4','5','6','7','8','9','10']
+            // The content for this list is contained in Contacts.contactsController.
+            contentBinding: 'Contacts.contactsController.arrangedObjects',
+
+            // If the list selection changes, update the selection on the controller.
+            selectionBinding: 'Contacts.contactsController.selection'
           })
         }),
 

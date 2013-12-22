@@ -23,8 +23,8 @@ Contacts.main = function main() {
   // This will make your app come alive!
   //
   // ex.
-  // var content = Contacts.store.find(Contacts.Group);
-  // Contacts.groupsController.set('content', content);
+  var content = Contacts.store.find(Contacts.Group);
+  Contacts.groupsController.set('content', content);
 
 };
 

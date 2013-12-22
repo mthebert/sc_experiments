@@ -16,3 +16,4 @@ Contacts.contactController = SC.ObjectController.create(
   contentBinding: 'Contacts.contactsController.selection'
 
 });
+; if ((typeof SC !== 'undefined') && SC && SC.Module && SC.Module.scriptDidLoad) SC.Module.scriptDidLoad('contacts');

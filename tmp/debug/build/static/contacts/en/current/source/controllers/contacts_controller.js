@@ -16,3 +16,4 @@ Contacts.contactsController = SC.ArrayController.create(
   contentBinding: 'Contacts.groupController.contacts',
 
 });
+; if ((typeof SC !== 'undefined') && SC && SC.Module && SC.Module.scriptDidLoad) SC.Module.scriptDidLoad('contacts');

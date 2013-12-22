@@ -15,14 +15,17 @@ Contacts.Contact = SC.Record.extend(
 /** @scope Contacts.Contact.prototype */ {
 
   firstName: SC.Record.attr(String),
+
   lastName: SC.Record.attr(String),
+
   telNumber: SC.Record.attr(String),
+
   imageURI: SC.Record.attr(String),
+
   description: SC.Record.attr(String),
 
-  // each contact has one group
-  group: SC.Record.toOne('Contacts.Group',{
-  	inverse: 'contacts'
+  group: SC.Record.toOne('Contacts.Group', {
+    inverse: 'contacts'
   })
 
 });
