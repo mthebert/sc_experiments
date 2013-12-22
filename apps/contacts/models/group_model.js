@@ -14,6 +14,11 @@
 Contacts.Group = SC.Record.extend(
 /** @scope Contacts.Group.prototype */ {
 
-  // TODO: Add your own code here.
+  name: SC.Record.attr(String)
+
+  // each group has many contacts
+  contacts: SC.Record.toMany('Contacts.Contact', {
+  	inverse: 'group'
+  })
 
 });
